@@ -162,10 +162,10 @@ bool showPathDFS = false;
 bool showPathDijkstra = false;
 bool showPathAstar = false;
 
-bool showClosetPathBFS = false;
-bool showClosetPathDFS = false;
-bool showClosetPathDijkstra = false;
-bool showClosetPathAstar = false;
+bool showClosedListBFS = false;
+bool showClosedListDFS = false;
+bool showClosedListDijkstra = false;
+bool showClosedListAstar = false;
 
 void ShowUI()
 {
@@ -197,12 +197,12 @@ void ShowUI()
 		showPathDijkstra = false;
 		showPathAstar = false;
 	}
-	if (ImGui::Button("Clean all closet path"))
+	if (ImGui::Button("Clean all closed lists"))
 	{
-		showClosetPathBFS = false;
-		showClosetPathDFS = false;
-		showClosetPathDijkstra = false;
-		showClosetPathAstar = false;
+		showClosedListBFS = false;
+		showClosedListDFS = false;
+		showClosedListDijkstra = false;
+		showClosedListAstar = false;
 	}
 
 	if (ImGui::CollapsingHeader("BFS"), ImGuiTreeNodeFlags_DefaultOpen)
@@ -211,9 +211,9 @@ void ShowUI()
 		{
 			showPathBFS = !showPathBFS;
 		}
-		if (ImGui::Button("BFS Closet Path"))
+		if (ImGui::Button("BFS Closed List"))
 		{
-			showClosetPathBFS = !showClosetPathBFS;
+			showClosedListBFS = !showClosedListBFS;
 		}
 	}
 	if (ImGui::CollapsingHeader("DFS"), ImGuiTreeNodeFlags_DefaultOpen)
@@ -222,9 +222,9 @@ void ShowUI()
 		{
 			showPathDFS = !showPathDFS;
 		}
-		if (ImGui::Button("DFS Closet Path"))
+		if (ImGui::Button("DFS Closed List"))
 		{
-			showClosetPathDFS = !showClosetPathDFS;
+			showClosedListDFS = !showClosedListDFS;
 		}
 	}
 	if (ImGui::CollapsingHeader("Dijkstra"), ImGuiTreeNodeFlags_DefaultOpen)
@@ -233,9 +233,9 @@ void ShowUI()
 		{
 			showPathDijkstra = !showPathDijkstra;
 		}
-		if (ImGui::Button("Dijkstra Closet Path"))
+		if (ImGui::Button("Dijkstra Closed List"))
 		{
-			showClosetPathDijkstra = !showClosetPathDijkstra;
+			showClosedListDijkstra = !showClosedListDijkstra;
 		}
 	}
 	if (ImGui::CollapsingHeader("A*"), ImGuiTreeNodeFlags_DefaultOpen)
@@ -244,9 +244,9 @@ void ShowUI()
 		{
 			showPathAstar = !showPathAstar;
 		}
-		if (ImGui::Button("A* Closet Path"))
+		if (ImGui::Button("A* Closed List"))
 		{
-			showClosetPathAstar = !showClosetPathAstar;
+			showClosedListAstar = !showClosedListAstar;
 		}
 	}
 	ImGui::End();
@@ -360,42 +360,38 @@ bool GameLoop(float deltaTime)
 		myChar.myPF.ShowGraph();
 	}
 
+	if (showClosedListBFS)
+	{
+		myChar.myPF.ShowClosedList();
+	}
+	if (showClosedListDFS)
+	{
+		myChar2.myPF.ShowClosedList();
+	}
+	if (showClosedListDijkstra)
+	{
+		myChar3.myPF.ShowClosedList();
+	}
+	if (showClosedListAstar)
+	{
+		myChar4.myPF.ShowClosedList();
+	}
+
 	if (showPathBFS)
 	{
 		myChar.myPF.ShowPath();
-		
-
 	}
 	if (showPathDFS)
 	{
 		myChar2.myPF.ShowPath();
-		
 	}
 	if (showPathDijkstra)
 	{
 		myChar3.myPF.ShowPath();
-		
 	}
 	if (showPathAstar)
 	{
 		myChar4.myPF.ShowPath();
-	}
-
-	if (showClosetPathBFS)
-	{
-		myChar.myPF.ShowClosetPath();
-	}
-	if (showClosetPathDFS)
-	{
-		myChar2.myPF.ShowClosetPath();
-	}
-	if (showClosetPathDijkstra)
-	{
-		myChar3.myPF.ShowClosetPath();
-	}
-	if (showClosetPathAstar)
-	{
-		myChar4.myPF.ShowClosetPath();
 	}
 
 

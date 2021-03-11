@@ -24,8 +24,8 @@ public:
 	void ShowGraph();
 	void LoadStart(size_t index);
 	void LoadEnd(size_t index);
-	void ShowPath();
-	void ShowClosetPath();
+	void ShowPath() const;
+	void ShowClosedList() const;
 	
 	std::list<size_t> GetPath() { return mPath; }
 	std::list<X::Math::Vector2> GetPathPosition();

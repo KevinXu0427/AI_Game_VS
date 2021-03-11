@@ -76,7 +76,7 @@ struct GetHCost
 
 		size_t valueH = diffX + diffY;
 
-		return valueH;
+		return static_cast<float>(valueH);
 	}
 };
 
@@ -315,33 +315,43 @@ void PathFinding::LoadEnd(size_t index)
 
 }
 
-void PathFinding::ShowPath()
+void PathFinding::ShowPath() const
 {
-	for (auto nodeIndex : mPath)
+	for (auto iter = mPath.begin(); iter != mPath.end(); ++iter)
 	{
+		size_t nodeIndex = *iter;
 		auto& node = mGraph.GetNode(nodeIndex);
 
-		switch (mColorIndex)
+		const X::Color colors[] = {
+			X::Colors::LightBlue,
+			X::Colors::Orange,
+			X::Colors::Cyan,
+			X::Colors::OrangeRed
+		};
+
+		X::DrawScreenCircle(node.position, 5.0f, colors[mColorIndex]);
+
+		auto next = iter;
+		next++;
+		if (next != mPath.end())
 		{
-		case 0:
-			X::DrawScreenCircle(node.position, 5.0f, X::Colors::LightBlue);
-			break;
-		case 1:
-			X::DrawScreenCircle(node.position, 5.0f, X::Colors::Orange);
-			break;
-		case 2:
-			X::DrawScreenCircle(node.position, 5.0f, X::Colors::Cyan);
-			break;
-		case 3:
-			X::DrawScreenCircle(node.position, 5.0f, X::Colors::OrangeRed);
-			break;
-		default:
-			break;
+			size_t nextNodeIndex = *next;
+			auto& nextNode = mGraph.GetNode(nextNodeIndex);
+
+			const X::Math::Vector2 offsets[] =
+			{
+				{  0.0f,  0.0f },
+				{  1.0f,  0.0f },
+				{  0.0f,  1.0f },
+				{  1.0f,  1.0f },
+			};
+			for (auto& offset : offsets)
+				X::DrawScreenLine(node.position + offset, nextNode.position + offset, colors[mColorIndex]);
 		}
 	}
 }
 
-void PathFinding::ShowClosetPath()
+void PathFinding::ShowClosedList() const
 {
 	for (auto index : mContext.closedList)
 	{
