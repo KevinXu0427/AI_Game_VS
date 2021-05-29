@@ -337,6 +337,7 @@ void GameLoopStart(float deltaTime)
 	// print the header
 	X::DrawScreenText("Mushroom Collector", xPos, yPos, 50.0f, X::Math::Vector4(1.0f, 2.0f, 0.0f, 1.0f));
 	X::DrawScreenText("AI Pathfinding Simulation", xPos-100.0f, yPos+60.0f, 50.0f, X::Math::Vector4(0.50f, 1.0f, 0.0f, 1.0f));
+	X::DrawScreenText("Press Y Start", xPos+50.0f, yPos+200.0f, 50.0f, X::Math::Vector4(0.50f, 1.0f, 0.0f, 1.0f));
 	
 
 

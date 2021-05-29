@@ -1,0 +1,8 @@
+﻿  Precompiled.cpp
+  Agent.cpp
+  AIWorld.cpp
+  WanderBehaviour.cpp
+  PerceptionModule.cpp
+  SteeringModule.cpp
+  Generating Code...
+  AI.vcxproj -> C:\Users\Zixuan XU\Desktop\AI_Game_VS\x64\Debug\AI.lib
